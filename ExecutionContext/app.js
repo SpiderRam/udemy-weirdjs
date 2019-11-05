@@ -48,3 +48,20 @@ function h() {
 
 g();
 var j;
+
+// Variable Environments
+
+function k() {
+    var myVar; // undefined logs last
+    console.log('k', myVar);
+}
+
+function l() {
+    var myVar = 2; // 2 logs second
+    console.log('l', myVar);
+    k();
+}
+
+var myVar = 1; // 1, logs first
+console.log('global', myVar);
+l();
