@@ -17,7 +17,7 @@ Creation and Hoisting: the Execution Context is created in two phases.
         - Global Object
         - this
         - Outer Environment
-        - Set up memory space for vaiables and functions ("hoisting")
+        - Set up memory space for variables and functions ("hoisting")
         - Hoisting:  the JavaScript engine has already set aside memory space for all your variables and functions, so it can access them when the code runs, but it does not 'move' code to the top of a file during compilation, and it doesn't necessarily know the eventual value of a declared variable.  All variables in JavaScript are initially set to undefined as a placeholder, functions sit in memory in their entirety. Do not rely on hoisting, it can yield unexpected results.  
         - Also, note that 'undefined' is not the same as not defined, it has a specific meaning in JavaScript. 'Uncaught ReferenceError: d is not defined' will show when a variable is used for which no space has been created in memory.
         - It is very bad practice to ever set a variable equal to undefined.
