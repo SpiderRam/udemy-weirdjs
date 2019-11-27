@@ -416,3 +416,105 @@ function closuresAndCbs() {
     });
 };
 // closuresAndCbs();
+
+// >>>>>>>>>>> Call, Apply, and Bind <<<<<<<<<<
+// var person = {
+//     firstname: 'John',
+//     lastname: 'Doe',
+//     getFullName: function() {
+//         var fullname = this.firstname + ' ' + this.lastname;
+//         return fullname;
+//     }
+// };
+
+// var logName = function(lang1, lang2) {  
+//     console.log(`Logged: ${this.getFullName()}`); 
+// };
+// // logName(); // will fail because this function has no reference to getFullName, this does not point to the  person object
+
+// var logPersonName = logName.bind(person);
+// logPersonName();
+
+// var logNameWithBind = function(lang1, lang2) {  
+//     console.log(`Logged: ${this.getFullName()}`);  
+// }.bind(person);
+// logNameWithBind();
+
+// var logNameWithArguments = function(lang1, lang2) {  
+//     console.log(`Logged: ${this.getFullName()}`);  
+//     console.log(`Arguments: ${lang1}, ${lang2}`);
+//     console.log('-------------------------------');
+// };
+// var boundArguments = logNameWithArguments.bind(person);
+// boundArguments('English');
+
+// logName.call(person); // Logged: John Doe
+// logNameWithArguments.call(person, 'English', 'Español'); // you can pass arguments with call for the parent function
+
+// logName.apply(person); // Works just like .call()
+// logNameWithArguments.apply(person, ['French', 'Hausa']); 
+
+// var person2 = {
+//     firstname: 'Jane',
+//     lastname: 'Doe'
+// };
+
+// // Function Borrowing
+// console.log(person.getFullName.apply(person2)); // Jane Doe
+
+// // Function Currying
+// function multiply(a, b) {
+//     return a * b;
+// };
+
+// var multByTwo = multiply.bind(this, 2); // this use of bind creates the reference to multiply(), and also sets the value of a to 2, every time multByTwo is invoked
+// console.log(multByTwo(4)); // 8
+// console.log(multByTwo(10)); // 20
+// console.log(multByTwo(27.3)); // 54.6
+
+// >>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<
+
+function funcPro() {
+    var arr1 = [1, 2, 3];
+
+    var arr2 = [];
+    for (var i = 0; i < arr1.length; i++) {
+        arr2.push(arr1[i] * 2);
+    }
+    console.log(`arr2: ${arr2}`); // 2, 4, 6
+
+    function mapForEach(arr, fn) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            newArr.push(fn(arr[i]));
+        }
+        return newArr;
+    };
+
+    var arr3 = mapForEach(arr1, function(item) {
+        return item * 3;
+    });
+    console.log(`arr3: ${arr3}`); // 3, 6, 9
+
+    var arr4 = mapForEach(arr1, function(item) {
+        return item > 2;
+    });
+    console.log(`arr4: ${arr4}`); // false, false, true
+
+    var checkPastLimit = function(limiter, item) {
+        return item > limiter;
+    };
+
+    var arr5 = mapForEach(arr1, checkPastLimit.bind(this, 1));
+    console.log(arr5); // [false, true, true]
+
+    var simpleCheckLimit = function(limiterA) {
+        return function(limiterB, item) {
+            return item > limiterB;
+        }.bind(this, limiterA);
+    };
+
+    var arr6 = mapForEach(arr1, simpleCheckLimit(1));
+    console.log(arr6); // [false, true, true]
+};
+funcPro();

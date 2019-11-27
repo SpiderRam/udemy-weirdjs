@@ -98,3 +98,28 @@ Closures and Callbacks
     * setTimeout uses a function expression to reference the values it needs inside the closure, so that when the code does execute, it can still find the reference in memeory to var greeting = 'Hi' as in the function closuresAndCbs in app.js.
     * jQuery employs the same utility in, for example, code such as $('button").click(), which takes a function expression a parameter.
     * A callback is a function you give to another function, to be executed when the other function is finished.  So the function you call, 'calls back' by calling the function you gave it to run when it finishes.
+
+Call, Apply, and Bind
+    * All functions in JavaScript have access to some special built in functions:  call(), apply(), and bind(), which all involve keyword this.
+    * These functions are properties on the function object, hence the use of .bind(), .call(), etc.
+    * .bind():
+        - using bind returns a new function-- it makes a copy of the function it is called on, and the object which is passed as an argument is what 'this' will refer to for that copy.
+    * .call():
+        - .call() calls the function the same way as logName() would, except it accepts an argument the same way as .bind()
+    * .apply():
+        - works almost exactly like .call(), but expects parent function arguments to be in an array, as on line 455
+    * Function Borrowing can be done with both call and apply, as on line 462.  You can call a function that is a property of one object, but assign the values of another object to be its reference via 'this'
+    * Function Currying uses .bind() to copy the function, set the reference, and also set one or more parameters to a default value, as on lines 470-473
+
+Functional Programming
+    * Lines 504-509
+        - checkPastLimit wants two parameters, but the function inside of mapForEach (fn) accepts only one
+        - in order to take advantage of mapForEach, you can use .bind()
+        - passing 'this' satisfies the expectations of bind(), but doesn't really change anything
+        - passing the second argument (1), assigns the limiter value (line 508)
+        - the copy you just made of checkPastLimit is then passed into mapForEach as the fn argument
+        - fn(arr[i]) then assigns the value of arr[i] to item, since limiter has already been set
+    * Lines 511-518
+        - simpleCheckLimit returns another function
+        - bind is used to set the default value of limiterB to that of limiterA
+        - the returned function (lines 512-513) is what is passed to the fn parameter of mapForEach, and item is given the value of arr1[i]
