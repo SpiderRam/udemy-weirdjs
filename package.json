@@ -1,0 +1,23 @@
+{
+  "name": "udemy-weirdjs",
+  "version": "1.0.0",
+  "description": "### Course found here:  [https://www.udemy.com/course/understand-javascript/](https://www.udemy.com/course/understand-javascript/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpiderRam/udemy-weirdjs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpiderRam/udemy-weirdjs/issues"
+  },
+  "homepage": "https://github.com/SpiderRam/udemy-weirdjs#readme",
+  "dependencies": {
+    "underscore": "^1.10.2"
+  }
+}
