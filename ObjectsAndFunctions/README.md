@@ -125,3 +125,5 @@
         - simpleCheckLimit returns another function
         - bind is used to set the default value of limiterB to that of limiterA
         - the returned function (lines 512-513) is what is passed to the fn parameter of mapForEach, and item is given the value of arr1[i]
+  * Try to either mutate data early in your code, or not mutate it at all (i.e. return new objects, as with map())
+  * Underscore.js [annotated source code](https://underscorejs.org/docs/underscore.html) is a good resource for learning about functional programming concepts. 
